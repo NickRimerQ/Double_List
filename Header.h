@@ -32,8 +32,8 @@ public:
 	void pop_front();
 	void clear();
 	void pop_back();
-	int GetSize()
-	{
-		return Size;
-	}
+	int GetSize();
+	bool isEmpty();
+	void insert(T data, int index);
+	void removeAt(int index);
 };
