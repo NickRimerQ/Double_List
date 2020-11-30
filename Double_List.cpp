@@ -111,3 +111,111 @@ void Double_List<T>::pop_back()
 
 	Size--;
 }
+
+template<typename T>
+int Double_List<T>::GetSize()
+{
+	return Size;
+}
+
+template<typename T>
+bool Double_List<T>::isEmpty()
+{
+	if (Size > 0)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+template<typename T>
+void Double_List<T>::insert(T data, int index)
+{
+	if (Size / 2 >= index)
+	{
+		Node<T>* previous = this->head;
+
+		for (int i = 0; i < index - 1; i++)
+		{
+			previous = previous->pNext;
+		}
+
+		Node<T>* newNode = new Node<T>(data, previous->pNext, previous);
+
+		Node<T>* current = previous->pNext;
+		current->pPrev = newNode;
+
+		previous->pNext = newNode;
+
+		Size++;
+	}
+	else
+	{
+		Node<T>* next = this->tail;
+
+		for (int i = Size; i > index + 1; i--)
+		{
+			next = next->pPrev;
+		}
+
+		Node<T>* newNode = new Node<T>(data, next, next->pPrev);
+
+		Node<T>* current = next->pPrev;
+		current->pNext = newNode;
+
+		next->pPrev = newNode;
+
+		Size++;
+	}
+}
+
+template<typename T>
+void Double_List<T>::removeAt(int index)
+{
+	if (Size / 2 >= index)
+	{
+		Node<T>* previous = this->head;
+		for (int i = 0; i < index - 1; i++)
+		{
+			previous = previous->pNext;
+		}
+
+		Node<T>* toDelete = previous->pNext;
+
+		previous->pNext = toDelete->pNext;
+
+		Node<T>* next = toDelete->pNext;
+
+		next->pPrev = previous;
+
+		delete toDelete;
+
+		Size--;
+	}
+	else
+	{
+		Node<T>* next = this->tail;
+
+		for (int i = Size - 1; i > index + 1; i--)
+		{
+			next = next->pPrev;
+		}
+
+
+
+		Node<T>* toDelete = next->pPrev;
+
+		next->pPrev = toDelete->pPrev;
+
+		Node<T>* previous = toDelete->pPrev;
+
+		previous->pNext = next;
+
+		delete toDelete;
+
+		Size--;
+	}
+}
