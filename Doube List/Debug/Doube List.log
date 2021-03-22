@@ -1,0 +1,3 @@
+﻿  Source.cpp
+C:\Users\Наталия\source\repos\Doube List\Double_List.cpp(77): warning C4715: 'Double_List<int>::operator[]': not all control paths return a value
+  Doube List.vcxproj -> C:\Users\Наталия\source\repos\Doube List\Debug\Doube List.exe
